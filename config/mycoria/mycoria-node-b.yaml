@@ -1,0 +1,28 @@
+router:
+  address:
+    ip: fd1a:9c70:1537:fce:cbc4:bb57:ac9b:50e5
+    hash: BLAKE3
+    type: Ed25519
+    public: 2fc2b6e05ad5a3cf87ad3e8804621083eda5dce2368673cf1a453ef4205d568f
+    private: a85f535fd546aeb6edeedbde8b13e4f993d3185c374a0341c84b6682b0e08bf12fc2b6e05ad5a3cf87ad3e8804621083eda5dce2368673cf1a453ef4205d568f
+  universe: test
+  universeSecret: correct horse battery stable
+  listen:
+    - tcp:47369
+  autoConnect: true
+  minAutoConnect: 1
+  connect:
+    - "tcp://mycoria-a:47369"
+system:
+  statePath: /root/.mycoria/state.json
+  disableTUN: true
+services:
+  - name: ping
+    url: 'icmp6:'
+    public: true
+  - name: "nginx-b-exposed"
+    description: "Nginx B Exposed Port"
+    url: 'tcp://:8080'
+    public: true
+    advertise: true
+    domain: truffle.myco

@@ -1,0 +1,28 @@
+router:
+  address:
+    ip: fd1a:8fd0:d01e:8d3b:ce17:dc5b:83f:1d5
+    hash: BLAKE3
+    type: Ed25519
+    public: b8c6448fc73ba96f23d1c9786d8ece39335d7d8d55b41b035e5785cd6120d640
+    private: a980e54ec899dac78302d881003add77546abece5c517c43fa6d2a93023ef98cb8c6448fc73ba96f23d1c9786d8ece39335d7d8d55b41b035e5785cd6120d640
+  universe: test
+  universeSecret: correct horse battery stable
+  listen:
+    - tcp:47369
+  autoConnect: true
+  minAutoConnect: 1
+  connect:
+    - "tcp://mycoria-b:47369"
+system:
+  statePath: /root/.mycoria/state.json
+  disableTUN: true
+services:
+  - name: ping
+    url: 'icmp6:'
+    public: true
+  - name: "nginx-a-exposed"
+    description: "Nginx A Exposed Port"
+    url: 'tcp://:8080'
+    public: true
+    advertise: true
+    domain: matsutake.myco
